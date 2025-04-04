@@ -33,10 +33,11 @@ export default function RootLayout() {
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="homepage/(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="homepage/requestride" options={{ headerShown: false }} />
-        <Stack.Screen name="homepage/home" options={{ headerShown: false }} />
+        <Stack.Screen name="drivers-page/(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="auth/signin" options={{ headerShown: false }} />
         <Stack.Screen name="auth/signup" options={{ headerShown: false }} />
         <Stack.Screen name="auth/otp-verification" options={{ headerShown: false }} />
+        <Stack.Screen name="auth/signup-driver" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

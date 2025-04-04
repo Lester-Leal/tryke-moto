@@ -1,4 +1,3 @@
-// RequestRide.tsx
 import * as React from "react";
 import * as RN from "react-native";
 import CustomView from "@/components/CustomView";
@@ -6,17 +5,6 @@ import SolidButton from "@/components/Buttons/SolidButton";
 import OutlinedButton from "@/components/Buttons/OutlinedButton";
 import DropDown from "@/components/DropDown";
 import { useRouter } from 'expo-router';
-
-const todaOptions = [
-    { label: "CAMBAL TODA", value: "CAMBAL TODA" },
-    { label: "CBB TODA", value: "CBB TODA" },
-    { label: "BUTODA", value: "BUTODA" },
-    { label: "MLCMBB TODA", value: "MLCMBB TODA" },
-    { label: "SNB TODA", value: "SNB TODA" },
-    { label: "BTMT TODA", value: "BTMT TODA" },
-    { label: "CBLM TODA", value: "CBLM TODA" },
-    { label: "TC TODA", value: "TC TODA" },
-];
 
 export default function RequestRide() {
     const [selectedTODA, setSelectedTODA] = React.useState<string | null>(null);
@@ -26,12 +14,12 @@ export default function RequestRide() {
         <CustomView>
             {/* TODA Dropdown */}
             <RN.View style={{  marginTop: 25, gap: 10 }}>
-                <DropDown data={todaOptions} value={selectedTODA} setValue={setSelectedTODA} placeholder="SELECT A TODA" />
                 <SolidButton title="PICK UP LOCATION" onPress={() => console.log("Request Ride")} />
                 <SolidButton title="DROP OFF LOCATION" onPress={() => console.log("Request Ride")} />
             </RN.View>
             {/* Fare Breakdown */}
             <RN.View style={styles.fareContainer}>
+                <RN.Text style={styles.title}>Fare Breakdown</RN.Text>
                 <RN.View style={styles.fareRow}>
                     <RN.Text style={styles.fareLabel}>Base Fare:</RN.Text>
                     <RN.Text style={styles.fareAmount}>₱00.00</RN.Text>
@@ -47,7 +35,7 @@ export default function RequestRide() {
             </RN.View>
 
             {/* Buttons */}
-            <RN.View style={{ marginTop: 40, gap: 10 }}>
+            <RN.View style={styles.buttonContainer}>
                 <SolidButton title="Choose Payment Method" onPress={() => console.log("Request Ride")} />
                 <OutlinedButton title="Cancel" onPress={() => router.push('../homepage/(tabs)')} />
             </RN.View>
@@ -71,7 +59,7 @@ const styles = RN.StyleSheet.create({
         padding: 15,
         backgroundColor: "#F5F5F5",
         borderRadius: 10,
-        marginTop: 40,
+        marginTop: 10,
     },
     fareRow: {
         flexDirection: "row",
@@ -92,7 +80,7 @@ const styles = RN.StyleSheet.create({
         marginTop: 10,
         borderTopWidth: 1,
         borderTopColor: "#ddd",
-        paddingTop: 10,
+        paddingTop: 150,
     },
     fareTotalLabel: {
         fontSize: 18,
@@ -102,6 +90,17 @@ const styles = RN.StyleSheet.create({
         fontSize: 18,
         fontWeight: "bold",
         color: "#337B09",
+    },
+    buttonContainer: {
+        // put all the buttons in the bottom of the screen
+        position: "absolute",
+        bottom: 20,
+        left: 20,
+        right: 20,
+        flexDirection: "column",
+        gap: 10,
+        justifyContent: "space-between",
+        alignItems: "center",
     },
 });
 

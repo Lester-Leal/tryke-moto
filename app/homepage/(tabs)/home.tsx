@@ -1,69 +1,70 @@
 import * as React from "react";
 import * as RN from "react-native";
-import * as Location from "expo-location";
-import { useRouter } from "expo-router";
-import MapView, { Marker, PROVIDER_DEFAULT } from "react-native-maps";
+import { useRouter } from 'expo-router';
+
+import CustomView from "@/components/CustomView";
+import TodaButton from "@/components/Buttons/TodaButton";
 import SolidButton from "@/components/Buttons/SolidButton";
 
+const SampleTodoData = [
+    {
+        "toda": "CAMBAL TODA",
+        "available": 5,
+    },
+    {
+        "toda": "BUTODA",
+        "available": 0,
+    },
+    {
+        "toda": "MLCMBB TODA",
+        "available": 2,
+    },
+    {
+        "toda": "SNB TODA",
+        "available": 3,
+    },
+    {
+        "toda": "BTMT TODA",
+        "available": 1,
+    },
+    {
+        "toda": "CBLM TODA",
+        "available": 4,
+    },
+    {
+        "toda": "TC TODA",
+        "available": 0,
+    }
+];
 export default function Home() {
     const router = useRouter();
-
-    // const [region, setRegion] = React.useState({
-    //     latitude: 14.5995, // Default to Manila
-    //     longitude: 120.9842,
-    //     latitudeDelta: 0.01,
-    //     longitudeDelta: 0.01,
-    // });
-
-    // React.useEffect(() => {
-    //     requestLocationPermission();
-    // }, []);
-
-    // const requestLocationPermission = async () => {
-    //     let { status } = await Location.requestForegroundPermissionsAsync();
-    //     if (status === "granted") {
-    //         getUserLocation();
-    //     } else {
-    //         console.warn("Location permission denied");
-    //     }
-    // };
-
-    // const getUserLocation = async () => {
-    //     try {
-    //         let location = await Location.getCurrentPositionAsync({
-    //             accuracy: Location.Accuracy.High,
-    //         });
-    //         setRegion({
-    //             latitude: location.coords.latitude,
-    //             longitude: location.coords.longitude,
-    //             latitudeDelta: 0.01,
-    //             longitudeDelta: 0.01,
-    //         });
-    //     } catch (error) {
-    //         console.error("Error fetching location:", error);
-    //     }
-    // };
-
     return (
-        <RN.View style={styles.container}>
-            {/* <MapView
-                provider={PROVIDER_DEFAULT}
-                style={styles.map}
-                region={region}
-                showsUserLocation
-            >
-                <Marker coordinate={{ latitude: region.latitude, longitude: region.longitude }} />
-            </MapView> */}
-            <RN.View style={styles.buttonPosition}>
-                <SolidButton title="Request a Ride" onPress={() => router.push("../requestride")} />
-            </RN.View>
-        </RN.View>
-    );
+        <>
+            <CustomView>
+                <RN.View style={{ alignItems: "center", marginBottom: 20 }}>
+                    <RN.Text style={styles.title}>SELECT TODA</RN.Text>
+                </RN.View>
+                <RN.ScrollView showsVerticalScrollIndicator={false} style={{ marginBottom: 100, maxHeight: 400 }}>
+                    {SampleTodoData.map((item, index) => (
+                        <RN.TouchableOpacity key={index} onPress={() => console.log("Selected:", item.toda)}>
+                            <TodaButton title={item.toda} availables={item.available} onPress={() => console.log("Button Pressed")} />
+                        </RN.TouchableOpacity>
+                    ))}
+                </RN.ScrollView>
+
+                <RN.View style={styles.buttonPosition}>
+                    <SolidButton title="Request a Ride" onPress={() => router.push('../requestride')} />
+                </RN.View>
+            </CustomView>
+        </>
+    )
 }
 
 const styles = RN.StyleSheet.create({
-    container: { flex: 1 },
-    map: { flex: 1 },
+    title: {
+        fontSize: 24,
+        fontWeight: "bold",
+    },
     buttonPosition: {
         position: "absolute",
         bottom: 100,

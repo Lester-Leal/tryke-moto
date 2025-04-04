@@ -11,7 +11,7 @@ export default function History() {
             </RN.View>
             <RN.View style={styles.buttonContainer}>
                 <GroupButton 
-                    buttons={["Completed", "Cancelled"]} 
+                    buttons={["Upcoming","Completed", "Cancelled"]} 
                     onPress={(index) => console.log("Selected Index:", index)} 
                 />
             </RN.View>

@@ -24,9 +24,20 @@ export default function SignIn() {
             return;
         }
 
-        // Proceed to the homepage if permission is granted
-        router.push('/homepage/(tabs)');
+        // 🚀 Define test accounts
+        const passengerTestEmail = "passenger@example.com";
+        const driverTestEmail = "driver@example.com";
+
+        // 🚦 Check role based on inputted phone/email
+        if (phoneNumber === passengerTestEmail) {
+            router.push('../homepage/(tabs)'); // Passenger Dashboard
+        } else if (phoneNumber === driverTestEmail) {
+            router.push('../drivers-page/(tabs)'); // Driver Dashboard
+        } else {
+            alert("Invalid credentials!"); // Default error message
+        }
     };
+
 
     return (
         <CustomView primary>
@@ -46,6 +57,11 @@ export default function SignIn() {
                 <RN.View style={styles.buttonContainer}>
                     <SolidButton title="Log In" onPress={handleSignIn} /> {/* Updated onPress */}
                     <OutlinedButton title="Create an Account" onPress={() => router.push('/auth/signup')} />
+                </RN.View>
+                <RN.View style={{ alignItems: 'center', marginBottom: 10 }}>
+                    <RN.TouchableOpacity onPress={() => router.push('/auth/signup-driver')}>
+                        <RN.Text style={styles.forgotText}>Register as Tryke-Moto Driver</RN.Text>
+                    </RN.TouchableOpacity>
                 </RN.View>
             </RN.View>
         </CustomView>
@@ -73,13 +89,13 @@ const styles = RN.StyleSheet.create({
         marginBottom: 20,
     },
     inputContainer: {
-        marginBottom: 20,
+        marginBottom: 10,
         gap: 10,
     },
     buttonContainer: {
         alignItems: "center",
-        marginTop: 50,
-        marginBottom: 15,
+        marginTop: 30,
+        marginBottom: 5,
         gap: 10,
     },
     logo: {
@@ -89,7 +105,7 @@ const styles = RN.StyleSheet.create({
     },
     forgotText: {
         color: '#729CFF',
-        fontSize: 15,
+        fontSize: 12,
         textDecorationLine: 'underline',
     },
 });
